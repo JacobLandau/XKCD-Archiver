@@ -41,12 +41,12 @@ def archiver(lower_bound, upper_bound):
     for count in range(lower_bound, upper_bound + 1):
         # Exception for XKCD #404
         if count == 404:
-            file = open(archive_directory + '404 - Item Not Found', mode='w').close()
+            file = open('{}404 - Item Not Found'.format(archive_directory)), mode='w').close()
         else:
             # Tries to retrieve the json for the current strip in the loop
             try:
                 # Sets url for json to the current strip in the loop
-                url = requests.get('http://www.xkcd.com/' + str(count) + '/info.0.json')
+                url = requests.get('http://www.xkcd.com/{}/info.0.json'.format(count))
                 url.raise_for_status()
                 # Makes a dictionary of the current strip's json
                 strip = url.json()
@@ -73,24 +73,24 @@ def archiver(lower_bound, upper_bound):
                 # if the strip is, notifies user and iterates loop
                 # if the strip is not, downloads and renames
                 if os.path.exists(file_name) or os.path.exists(archive_directory + str(count) + ' - ' + file_name):
-                    print(str(count) + ' ALREADY DOWNLOADED')
+                    print('{} ALREADY DOWNLOADED'.format(count))
                 else:
                     wget.download(image_link)
-                    os.rename(image_link[28:], archive_directory + str(count) + ' - ' + file_name)
-                    print('\n' + str(count) + ' - ' + strip_title)
+                    os.rename('{}{}{} - {}'.format(image_link[28:], archive_directory, count, file_name))
+                    print('\n{} - '.format(count, strip_title))
 
             # Runs if the system throws a UnicodeEncodeError, which will only happen
             # when it tries to print a unicode character to the console
             # In that case, we substitute the usual line printed to the console
             # for a cheeky, console-safe stand-in
             except UnicodeEncodeError:
-                print('\n' + str(count) + ' - This title cannot be printed because unicode hates you.')
+                print('\n{} - This title cannot be printed because unicode hates you.'.format(count))
 
             # If another error happens, we simply have to write it to the errors.txt
             # file and move on with our lives
             else:
-                error_file = open(archive_directory + 'errors.txt', mode='a')
-                error_file.write(str(count) + ' - Failed \n')
+                error_file = open('{}errors.txt'.format(archive_directory), mode='a')
+                error_file.write('{} - Failed \n'.format(count))
                 error_file.close()
 
 archiver(sys.argv[1], sys.argv[2])
