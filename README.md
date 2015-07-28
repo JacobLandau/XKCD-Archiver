@@ -23,6 +23,7 @@ If Y is greater than the current strip, it defaults to the current strip
 
 # Known Issues
 - Title text not archived anywhere. Not an issue of scrapability, but in what format would be appropriate
+- XKCD.py writes every strip to the errors.txt file, including those which have downloaded without error
 - #826 - Guest Comic (SMBC) does not let user click the exhibits
 - #980 - Money is small version, text not readable
 - #1037 - Umwelt only downloads one of the possible strips (although that might be the point)
