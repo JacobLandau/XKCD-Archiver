@@ -41,7 +41,7 @@ def archiver(lower_bound, upper_bound):
     for count in range(lower_bound, upper_bound + 1):
         # Exception for XKCD #404
         if count == 404:
-            file = open('{}404 - Item Not Found'.format(archive_directory)), mode='w').close()
+            file = open('{}404 - Item Not Found'.format(archive_directory), mode='w').close()
         else:
             # Tries to retrieve the json for the current strip in the loop
             try:
