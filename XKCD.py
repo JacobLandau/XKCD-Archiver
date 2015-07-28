@@ -77,7 +77,6 @@ def archiver(lower_bound, upper_bound):
                 else:
                     wget.download(image_link)
                     os.rename(image_link[28:], '{}{} - {}'.format(archive_directory, count, file_name))
-                    #image_link[28:], archive_directory + str(count) + ' - ' + file_name
                     print('\n{} - {}'.format(count, strip_title))
 
             # Runs if the system throws a UnicodeEncodeError, which will only happen
