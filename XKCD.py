@@ -76,8 +76,9 @@ def archiver(lower_bound, upper_bound):
                     print('{} ALREADY DOWNLOADED'.format(count))
                 else:
                     wget.download(image_link)
-                    os.rename('{}{}{} - {}'.format(image_link[28:], archive_directory, count, file_name))
-                    print('\n{} - '.format(count, strip_title))
+                    os.rename(image_link[28:], '{}{} - {}'.format(archive_directory, count, file_name))
+                    #image_link[28:], archive_directory + str(count) + ' - ' + file_name
+                    print('\n{} - {}'.format(count, strip_title))
 
             # Runs if the system throws a UnicodeEncodeError, which will only happen
             # when it tries to print a unicode character to the console
