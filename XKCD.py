@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import os, wget, urllib, urllib.request, sys, requests
+import os, wget, urllib, urllib.request, sys, requests, shutil
 
 # The directory in which XKCD's comic images are stored
 directory = '//imgs.xkcd.com/comics/'
@@ -72,9 +72,11 @@ def archiver(lower_bound, upper_bound):
                 # Checks if the strip is already downloaded
                 # if the strip is, notifies user and iterates loop
                 # if the strip is not, downloads and renames
-                if os.path.exists(file_name) or os.path.exists(archive_directory + str(count) + ' - ' + file_name):
+                if os.path.exists(file_name) or os.path.exists(archive_directory + str(count) + ' - ' + file_name):                    
+                    print('-' * (shutil.get_terminal_size()[0] - 1))                    
                     print('{} ALREADY DOWNLOADED'.format(count))
                 else:
+                    print('-' * (shutil.get_terminal_size()[0] - 1)) 
                     wget.download(image_link)
                     os.rename(image_link[28:], '{}{} - {}'.format(archive_directory, count, file_name))
                     print('\n{} - {}'.format(count, strip_title))
